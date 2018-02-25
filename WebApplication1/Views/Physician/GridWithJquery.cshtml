@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "GridWithJquery";
+}
+
+<h2>Upcoming Appoinments</h2>
+<div>
+    @Html.ActionLink("Back","Index")
+</div>
+<div id="gridmvc">
+
+</div>
+
+<script>
+    $(document).ready(
+        function () {
+        $.ajax({
+            url: '@Url.Action("GridMvcWithJquery","Physician")',
+            processData: true,
+            dataTye: "json",
+            ContentType: "application/json: charset=utf-8",
+            success: function (res) {
+                if (res.Status == "Success") {
+                    $('#gridmvc').html(res.Html);
+                }
+            }
+
+        });
+    });
+
+</script>
+

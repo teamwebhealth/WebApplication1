@@ -5,9 +5,12 @@
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin: 80px auto;
+    width: 90%;
 }
+
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
@@ -21,4 +24,29 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+.logo {
+    height: auto;
+    width: 100%;
+}
+.logo img{
+    height: auto;
+    width: 100%;
+}
+.topinfo {
+    background-color: #ccffff;
+    padding:15px 10px;
+}
+.page {
+margin-top:100px;
+}
+.blackBorder {
+border:2px solid black;
+}
+.appointlogo img {
+    height: auto;
+    width: 40px;
+}
+.formappoint label {
+width:200px;
 }

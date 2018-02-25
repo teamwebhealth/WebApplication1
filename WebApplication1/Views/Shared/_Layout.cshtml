@@ -4,39 +4,92 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
+
+    <link href="@Url.Content("~/Content/themes/base/jquery-ui.min.css")" rel="stylesheet" />
+        <script src="@Url.Content("~/Scripts/jquery-1.12.4.min.js")"></script>
+        <script src="@Url.Content("~/Scripts/jquery-ui-1.12.1.min.js")"></script>
+
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <script type="text/javascript">
+       // alert("aa");
+      // $('.date-picker').datepicker();
+        $(function () {
+           
+            // This will make every element with the class "date-picker" into a DatePicker element
+            $('.date-picker').datepicker();
+            
+        })
+    </script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <div class="col-md-2">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @*@Html.ActionLink("Application PP", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+
+                </div>
+                <a href="@Url.Action("Index", "Home")" title="Family Clinic" class="logo">
+                    <img alt="logo" src="@Url.Content("~/Images/logo.jpg")">
+                </a>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="navbar-collapse topinfo ">
+                        <div class=" col-md-6">
+                            <div class="col-md-2"><img src="~/Images/icons8-marker-filled-50.png" alt="img" /></div>
+                            607 Pastuer Road<br/>
+                            Thunder Bay, ON P7B5Y9
+                        </div>
+                        <div class=" col-md-6">
+                            <div class="col-md-2"><img src="~/Images/icons8-phone-filled-50.png" alt="img" /></div>
+                        +1 (123) - 456 - 7890</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("My Appointment", "Appointment", "Home")</li>
+                            <li>@Html.ActionLink("Our Services", "About", "Home")</li>
+                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
+            
+            
         </div>
     </div>
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="~/Images/911.PNG" alt="emergency" />
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-md-4"><img src="~/Images/icons8-facebook-50.png" alt="img" /></div>
+                        <div class="col-md-4"><img src="~/Images/icons8-google-plus-50.png" alt="img" /></div>
+                        <div class="col-md-4"><img src="~/Images/icons8-twitter-squared-50.png" alt="img" /></div>
+                    </div>
+                </div>
+            </div>
         </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/bootstrap-grid")
     @RenderSection("scripts", required: false)
 </body>
 </html>

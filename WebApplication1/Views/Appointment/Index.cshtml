@@ -1,0 +1,113 @@
+﻿@model WebApplication1.Models.Appointment
+
+
+@using (Html.BeginForm("SaveChanges","Appointment",FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Appointment</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ReferenceNo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ReferenceNo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ReferenceNo, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+   
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FullName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PhoneNo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PhoneNo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PhoneNo, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.doctordropdown, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <label for="Doctor Name">
+                <select name="Doctor">
+                    <option>select name</option>
+                    @foreach (var Data in Model.doctordropdown)
+                    {
+                        <option @Data.DoctorCode>@Data.DoctorName</option>
+                    }
+                </select>
+            </label>
+
+            @Html.ValidationMessageFor(model => model.doctordropdown, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.AppointmentDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+           
+            @Html.TextBoxFor(model => model.AppointmentDate,  new {@class = "date-picker" } )
+            @Html.ValidationMessageFor(model => model.AppointmentDate, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-10">
+            @*@Html.DropDownList("Date Avaialable", new List<SelectListItem>{ new SelectListItem { Text = "22-02-2018", Value = "22-02-2018", Selected = true },
+        new SelectListItem { Text = "23-02-2018", Value = "22-02-2018", Selected = true },
+        new SelectListItem { Text = "24-02-2018", Value = "22-02-2018", Selected = true }
+        })*@
+            <!-- Examples of creating a Datepicker -->
+            @*<input class="date-picker" />*@
+            @*@Html.TextBox("dateBox", "", new { @class = "date-picker" })
+
+        @Html.ValidationMessageFor(model => model.doctordropdown, "", new { @class = "text-danger" })*@
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.AvaibilityList, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <label for="Avaibility Name">
+                <select name="Avaibility">
+                    <option>select Slot</option>
+                    @foreach (var Data in Model.AvaibilityList)
+                    {
+                        <option @Data.SerialNo>@Data.Avaibilityslot</option>
+                    }
+                </select>
+
+            </label>
+
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Book Appointment" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+

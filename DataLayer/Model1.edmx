@@ -1,0 +1,267 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="OPDManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'OPDManagement.dbo.AvaibilityMaster' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="AvaibilityMaster">
+          <Key>
+            <PropertyRef Name="SerialNo" />
+          </Key>
+          <Property Name="SerialNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AvaibilitySlot" Type="varchar" MaxLength="20" />
+          <Property Name="Doctor1" Type="varchar(max)" />
+          <Property Name="Doctor2" Type="varchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'OPDManagement.dbo.CaseDetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="CaseDetails">
+          <Key>
+            <PropertyRef Name="SerialNo" />
+            <PropertyRef Name="ReferenceNo" />
+            <PropertyRef Name="DoctorCode" />
+            <PropertyRef Name="InsuranceStatus" />
+          </Key>
+          <Property Name="SerialNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReferenceNo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="DoctorCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="InsuranceStatus" Type="bit" Nullable="false" />
+          <Property Name="InsuranceNo" Type="varchar" MaxLength="50" />
+          <Property Name="Age" Type="numeric" Precision="3" Scale="0" />
+          <Property Name="Gender" Type="char" MaxLength="10" />
+          <Property Name="AllergiesInfo" Type="text" />
+          <Property Name="CaseDetail" Type="text" />
+          <Property Name="PreviousPrescription" Type="varbinary(max)" />
+          <Property Name="CaseSpecificImages" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="DoctorMaster">
+          <Key>
+            <PropertyRef Name="DoctorCode" />
+          </Key>
+          <Property Name="SerialNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DoctorCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="DoctorName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'OPDManagement.dbo.OPDManagement' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="OPDManagement">
+          <Key>
+            <PropertyRef Name="SerialNo" />
+          </Key>
+          <Property Name="SerialNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReferenceNo" Type="varchar" MaxLength="6" StoreGeneratedPattern="Computed" />
+          <Property Name="FullName" Type="varchar" MaxLength="50" />
+          <Property Name="PhoneNo" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="EmailId" Type="varchar" MaxLength="50" />
+          <Property Name="DoctorCode" Type="varchar" MaxLength="10" />
+          <Property Name="AppointmentDate" Type="date" />
+          <Property Name="AppointmentTime" Type="varchar" MaxLength="50" />
+          <Property Name="Age" Type="varchar" MaxLength="10" />
+          <Property Name="Gender" Type="varchar" MaxLength="20" />
+          <Property Name="AllergyDetail" Type="varchar(max)" />
+          <Property Name="Casedetail" Type="varchar(max)" />
+          <Property Name="PreviousPrescreption" Type="varbinary(max)" />
+          <Property Name="CaseImage" Type="varbinary(max)" />
+          <Property Name="Treated" Type="int" />
+        </EntityType>
+        <EntityContainer Name="OPDManagementModelStoreContainer">
+          <EntitySet Name="DoctorMaster" EntityType="Self.DoctorMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AvaibilityMaster" EntityType="Self.AvaibilityMaster" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [AvaibilityMaster].[SerialNo] AS [SerialNo], 
+    [AvaibilityMaster].[AvaibilitySlot] AS [AvaibilitySlot], 
+    [AvaibilityMaster].[Doctor1] AS [Doctor1], 
+    [AvaibilityMaster].[Doctor2] AS [Doctor2]
+    FROM [dbo].[AvaibilityMaster] AS [AvaibilityMaster]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="CaseDetails" EntityType="Self.CaseDetails" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [CaseDetails].[SerialNo] AS [SerialNo], 
+    [CaseDetails].[ReferenceNo] AS [ReferenceNo], 
+    [CaseDetails].[DoctorCode] AS [DoctorCode], 
+    [CaseDetails].[InsuranceStatus] AS [InsuranceStatus], 
+    [CaseDetails].[InsuranceNo] AS [InsuranceNo], 
+    [CaseDetails].[Age] AS [Age], 
+    [CaseDetails].[Gender] AS [Gender], 
+    [CaseDetails].[AllergiesInfo] AS [AllergiesInfo], 
+    [CaseDetails].[CaseDetail] AS [CaseDetail], 
+    [CaseDetails].[PreviousPrescription] AS [PreviousPrescription], 
+    [CaseDetails].[CaseSpecificImages] AS [CaseSpecificImages]
+    FROM [dbo].[CaseDetails] AS [CaseDetails]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="OPDManagement" EntityType="Self.OPDManagement" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [OPDManagement].[SerialNo] AS [SerialNo], 
+    [OPDManagement].[ReferenceNo] AS [ReferenceNo], 
+    [OPDManagement].[FullName] AS [FullName], 
+    [OPDManagement].[PhoneNo] AS [PhoneNo], 
+    [OPDManagement].[EmailId] AS [EmailId], 
+    [OPDManagement].[DoctorCode] AS [DoctorCode], 
+    [OPDManagement].[AppointmentDate] AS [AppointmentDate], 
+    [OPDManagement].[AppointmentTime] AS [AppointmentTime], 
+    [OPDManagement].[Age] AS [Age], 
+    [OPDManagement].[Gender] AS [Gender], 
+    [OPDManagement].[AllergyDetail] AS [AllergyDetail], 
+    [OPDManagement].[Casedetail] AS [Casedetail], 
+    [OPDManagement].[PreviousPrescreption] AS [PreviousPrescreption], 
+    [OPDManagement].[CaseImage] AS [CaseImage], 
+    [OPDManagement].[Treated] AS [Treated]
+    FROM [dbo].[OPDManagement] AS [OPDManagement]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OPDManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DoctorMaster">
+          <Key>
+            <PropertyRef Name="DoctorCode" />
+          </Key>
+          <Property Name="SerialNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DoctorCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DoctorName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="CaseDetail">
+          <Key>
+            <PropertyRef Name="SerialNo" />
+            <PropertyRef Name="ReferenceNo" />
+            <PropertyRef Name="DoctorCode" />
+            <PropertyRef Name="InsuranceStatus" />
+          </Key>
+          <Property Name="SerialNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReferenceNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DoctorCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="InsuranceStatus" Type="Boolean" Nullable="false" />
+          <Property Name="InsuranceNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Age" Type="Decimal" Precision="3" Scale="0" />
+          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="AllergiesInfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CaseDetail1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PreviousPrescription" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="CaseSpecificImages" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityContainer Name="OPDManagementEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DoctorMasters" EntityType="Self.DoctorMaster" />
+          <EntitySet Name="CaseDetails" EntityType="Self.CaseDetail" />
+          <EntitySet Name="AvaibilityMasters" EntityType="OPDManagementModel.AvaibilityMaster" />
+          <EntitySet Name="OPDManagements" EntityType="OPDManagementModel.OPDManagement" />
+        </EntityContainer>
+        <EntityType Name="AvaibilityMaster">
+          <Key>
+            <PropertyRef Name="SerialNo" />
+          </Key>
+          <Property Name="SerialNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AvaibilitySlot" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Doctor1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Doctor2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="OPDManagement">
+          <Key>
+            <PropertyRef Name="SerialNo" />
+          </Key>
+          <Property Name="SerialNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReferenceNo" Type="String" MaxLength="6" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNo" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DoctorCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="AppointmentDate" Type="DateTime" Precision="0" />
+          <Property Name="AppointmentTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Age" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AllergyDetail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Casedetail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PreviousPrescreption" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="CaseImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Treated" Type="Int32" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OPDManagementModelStoreContainer" CdmEntityContainer="OPDManagementEntities">
+          <EntitySetMapping Name="DoctorMasters">
+            <EntityTypeMapping TypeName="OPDManagementModel.DoctorMaster">
+              <MappingFragment StoreEntitySet="DoctorMaster">
+                <ScalarProperty Name="SerialNo" ColumnName="SerialNo" />
+                <ScalarProperty Name="DoctorCode" ColumnName="DoctorCode" />
+                <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CaseDetails">
+            <EntityTypeMapping TypeName="OPDManagementModel.CaseDetail">
+              <MappingFragment StoreEntitySet="CaseDetails">
+                <ScalarProperty Name="SerialNo" ColumnName="SerialNo" />
+                <ScalarProperty Name="ReferenceNo" ColumnName="ReferenceNo" />
+                <ScalarProperty Name="DoctorCode" ColumnName="DoctorCode" />
+                <ScalarProperty Name="InsuranceStatus" ColumnName="InsuranceStatus" />
+                <ScalarProperty Name="InsuranceNo" ColumnName="InsuranceNo" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="AllergiesInfo" ColumnName="AllergiesInfo" />
+                <ScalarProperty Name="CaseDetail1" ColumnName="CaseDetail" />
+                <ScalarProperty Name="PreviousPrescription" ColumnName="PreviousPrescription" />
+                <ScalarProperty Name="CaseSpecificImages" ColumnName="CaseSpecificImages" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AvaibilityMasters">
+            <EntityTypeMapping TypeName="OPDManagementModel.AvaibilityMaster">
+              <MappingFragment StoreEntitySet="AvaibilityMaster">
+                <ScalarProperty Name="Doctor2" ColumnName="Doctor2" />
+                <ScalarProperty Name="Doctor1" ColumnName="Doctor1" />
+                <ScalarProperty Name="AvaibilitySlot" ColumnName="AvaibilitySlot" />
+                <ScalarProperty Name="SerialNo" ColumnName="SerialNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OPDManagements">
+            <EntityTypeMapping TypeName="OPDManagementModel.OPDManagement">
+              <MappingFragment StoreEntitySet="OPDManagement">
+                <ScalarProperty Name="Treated" ColumnName="Treated" />
+                <ScalarProperty Name="CaseImage" ColumnName="CaseImage" />
+                <ScalarProperty Name="PreviousPrescreption" ColumnName="PreviousPrescreption" />
+                <ScalarProperty Name="Casedetail" ColumnName="Casedetail" />
+                <ScalarProperty Name="AllergyDetail" ColumnName="AllergyDetail" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="AppointmentTime" ColumnName="AppointmentTime" />
+                <ScalarProperty Name="AppointmentDate" ColumnName="AppointmentDate" />
+                <ScalarProperty Name="DoctorCode" ColumnName="DoctorCode" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="ReferenceNo" ColumnName="ReferenceNo" />
+                <ScalarProperty Name="SerialNo" ColumnName="SerialNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

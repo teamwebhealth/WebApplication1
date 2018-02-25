@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{A81DC154-E49F-4CB8-8D76-F8A278ECF6A5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "DataLayer\DataLayer.csproj", "{7F3879B0-176C-4082-98C7-7EE682EA21C6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{A81DC154-E49F-4CB8-8D76-F8A278ECF6A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A81DC154-E49F-4CB8-8D76-F8A278ECF6A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A81DC154-E49F-4CB8-8D76-F8A278ECF6A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F3879B0-176C-4082-98C7-7EE682EA21C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F3879B0-176C-4082-98C7-7EE682EA21C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F3879B0-176C-4082-98C7-7EE682EA21C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F3879B0-176C-4082-98C7-7EE682EA21C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,25 @@
+﻿@model IEnumerable<WebApplication1.Models.Physician>
+@using GridMvc.Html
+
+
+<link href="~/Content/Gridmvc.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.12.4.min.js"></script>
+<script src="~/Scripts/gridmvc.min.js"></script>
+
+<div class="code-cut">
+
+    @Html.Grid(Model).Columns(Columns =>
+{
+    Columns.Add(c => c.ReferenceNo).Titled("CaseID").Filterable(true);
+    Columns.Add(c => c.FullName).Titled("FullName").Filterable(true);
+    Columns.Add(c => c.Age).Titled("Age").Filterable(true);
+
+    Columns.Add(c => c.AppointmentTime).Titled("AppointmentTime").Filterable(true);
+    Columns.Add(c => c.EmaiId).Titled("EmaiId").Filterable(true);
+    Columns.Add(c => c.PhoneNo).Titled("Phone").Filterable(true);
+    Columns.Add().Encoded(false).Sanitized(false).SetWidth(30).RenderValueAs(o => Html.ActionLink("Details", "Details", new { ReferenceNo = o.ReferenceNo }));
+    Columns.Add().Encoded(false).Sanitized(false).SetWidth(30).RenderValueAs(o => Html.ActionLink("Take Patient", "Treat", new { ReferenceNo = o.ReferenceNo }));
+
+}).WithPaging(10).Sortable(true).
+</div>

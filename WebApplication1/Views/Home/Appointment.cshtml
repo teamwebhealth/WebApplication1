@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "Appointment";
+
+}
+
+<h2>Appointment</h2>
+
+<h3>@ViewBag.Message</h3>
+<h4>Contacts us to schedule appointment today.</h4>
+<h4>Call us at <b>123-456-7892</b></h4>
+<h4>Or fill in the following form</h4>
+<form action="" class="formappoint">
+    <fieldset>
+        <legend>Personal information:</legend>
+        <label>First name:</label>
+        <input type="text" name="firstname" value="Mickey"><br>
+        <label>
+            Last name:
+        </label>
+        <input type="text" name="lastname" value="Mouse"><br>
+        <label>Contact Number:</label>
+        <input type="text" name="firstname" value="Mickey"><br>
+        <label>Email Address:</label>
+        <input type="email" name="lastname" value="Mouse"><br>
+        <label>Insurance:</label>
+        <input type="radio" name="insurance" value="Yes" checked> Yes
+        <input type="radio" name="insurance" value="No"> No<br>
+        <label>Select Doctor:</label>
+        <select name="cars">
+            <option value="volvo">Dr. Mago</option>
+            <option value="saab">Dr. Saba</option>
+            <option value="fiat">Dr. Choudhary</option>
+            <option value="audi">Dr. Hosam El-Ocla</option>
+        </select>
+        <br />
+
+        Availability:
+
+
+
+        <br>
+        <input type="submit" value="Submit">
+    </fieldset>
+</form> 
