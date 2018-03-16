@@ -3,22 +3,33 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title -Family Clinic</title>
 
     <link href="@Url.Content("~/Content/themes/base/jquery-ui.min.css")" rel="stylesheet" />
-        <script src="@Url.Content("~/Scripts/jquery-1.12.4.min.js")"></script>
-        <script src="@Url.Content("~/Scripts/jquery-ui-1.12.1.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery-1.12.4.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery-ui-1.12.1.min.js")"></script>
+    <script src='@Url.Content("~/Scripts/jquery.validate.js")' type='text/javascript'></script>
+    <script src='@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")' type='text/javascript'></script>
 
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <script type="text/javascript">
-       // alert("aa");
-      // $('.date-picker').datepicker();
+        // alert("aa");
+        // $('.date-picker').datepicker();
         $(function () {
-           
+
             // This will make every element with the class "date-picker" into a DatePicker element
-            $('.date-picker').datepicker();
+            //  $('.date-picker').datepicker();
+           
+
             
+
+            $(".date-picker").datepicker({
+                beforeShowDay: $.datepicker.noWeekends
+            })
+
+           
+
         })
     </script>
 </head>
@@ -57,7 +68,7 @@
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("My Appointment", "Appointment", "Home")</li>
+                            <li>@Html.ActionLink("My Appointment", "Index", "Appointment")</li>
                             <li>@Html.ActionLink("Our Services", "About", "Home")</li>
                             <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                         </ul>
@@ -69,9 +80,12 @@
         </div>
     </div>
     <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
+        <div class="page-wrap" >
+            @RenderBody()
+            <hr />
+        </div>
+        
+        <footer  class="site-footer">
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
@@ -93,3 +107,9 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+<style>
+    th.ui-datepicker-week-end,
+    td.ui-datepicker-week-end {
+        display: none;
+    }
+</style>

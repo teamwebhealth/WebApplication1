@@ -52,9 +52,6 @@
     <Compile Include="AvaibilityMaster.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="CaseDetail.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="DoctorMaster.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

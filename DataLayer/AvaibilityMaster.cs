@@ -16,6 +16,7 @@ namespace DataLayer
     {
         public int SerialNo { get; set; }
         public string AvaibilitySlot { get; set; }
+        public Nullable<int> DoctorId { get; set; }
         public string Doctor1 { get; set; }
         public string Doctor2 { get; set; }
     }

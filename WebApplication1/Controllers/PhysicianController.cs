@@ -1,6 +1,7 @@
 ﻿using DataLayer;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -13,23 +14,40 @@ namespace WebApplication1.Controllers
 {
     public class PhysicianController : Controller
     {
-        public static string DoctorName="";
-        public static string day="" ;
-        DateTime date = new DateTime();
+        public static string DoctorName = "";
+        public static string day = "";
+        public DateTime date;
         // GET: Physician
         public ActionResult Index()
         {
+            Common obj = new Common();
             Appointment model = new Appointment();
-            model.doctordropdown = Doctorlist();
+            model.doctordropdown = obj.Doctorlist();
             return View(model);
         }
-
-        public ActionResult Treat()
+        [HttpGet]
+        public ActionResult Treat(string ReferenceNo)
         {
-
-            return View();
+            Common obj = new Common();
+            Appointment ph = obj.GetAppointmentModelReferenceId(ReferenceNo);
+            return View(ph);
         }
 
+        [HttpPost]
+        public ActionResult Treat(Appointment model)
+        {
+            OPDManagementEntities db = new OPDManagementEntities();
+            OPDManagement obj = db.OPDManagements.Where(a => a.ReferenceNo == model.ReferenceNo).FirstOrDefault();
+            Appointment ph = new Appointment();
+            if (obj != null)
+            {
+                obj.Treated = "Yes";
+                obj.DoctorFeedback = model.DoctorFeedback;
+                db.SaveChanges();
+                ViewBag.Message = "Record updated successfully.";
+            }
+            return View(model);
+        }
         [HttpPost]
         public ActionResult GridWithJquery(FormCollection collection)
         {
@@ -37,37 +55,18 @@ namespace WebApplication1.Controllers
             ViewBag.Date = collection["AppointmentDate"];
             DoctorName = ViewBag.Doctor;
             IFormatProvider fp = new CultureInfo("es-ES");
-            date = DateTime.ParseExact(ViewBag.Date, "MM/dd/yyyy",fp);
-            day = date.ToString("yyyy/MM/dd");
+
+            day = ViewBag.Date;
+
+
             return View();
         }
 
-        
+
         public ActionResult Details(string ReferenceNo)
         {
-            OPDManagementEntities db = new OPDManagementEntities();
-            var obj = db.OPDManagements.Where(c => c.ReferenceNo.Equals(ReferenceNo));
-            Physician ph = new Physician();
-            if (obj != null && obj.Count() > 0)
-            {
-                foreach (var c in obj)
-                {
-                    ph.ReferenceNo = c.ReferenceNo;
-                    ph.FullName = c.FullName;
-                    ph.PhoneNo = c.PhoneNo.ToString();
-                    ph.EmaiId = c.EmailId;
-                    ph.DoctorCode = c.DoctorCode;
-                    ph.AppointmentTime = c.AppointmentTime;
-                    ph.AppointmentDate = c.AppointmentDate.Value.ToLongDateString();
-                    ph.Age = c.Age;
-                    ph.Gender = c.Gender;
-                    ph.AllergyDetail = c.AllergyDetail;
-                    ph.CaseDetail = c.Casedetail;
-                    ph.PeviousPrescription = c.PreviousPrescreption;
-                    ph.CaseImage = c.CaseImage;
-                }
-            }
-
+            Common obj = new Common();
+            Appointment ph = obj.GetAppointmentModelReferenceId(ReferenceNo);
             return View(ph);
         }
 
@@ -75,31 +74,30 @@ namespace WebApplication1.Controllers
 
         public JsonResult GridMvcWithJquery()
         {
+            date = Convert.ToDateTime(day);
             OPDManagementEntities db = new OPDManagementEntities();
             var result = (from c in db.OPDManagements
-                          join d in db.DoctorMasters on c.DoctorCode equals d.DoctorCode
-                          where d.DoctorName==DoctorName && c.AppointmentDate.ToString() == day
-                          select new Physician
+                          join d in db.DoctorMasters on c.DoctorId equals d.SerialNo
+                          where d.DoctorName == DoctorName && c.AppointmentDate== date.Date
+                          select new Appointment
                           {
                               ReferenceNo = c.ReferenceNo,
                               FullName = c.FullName,
                               PhoneNo = c.PhoneNo.ToString(),
-                              EmaiId = c.EmailId,
-                              DoctorCode = c.DoctorCode,
-                              AppointmentTime =c.AppointmentTime,
-                              Age=c.Age, 
-                              Gender =c.Gender,
-                              AllergyDetail =c.AllergyDetail,
-                              CaseDetail =c.Casedetail,
-                              PeviousPrescription=c.PreviousPrescreption,
-                              CaseImage =c.CaseImage
+                              Email = c.EmailId,
+                              Doctorcode = c.DoctorCode,
+                              TimeSlot = c.AppointmentTime,
+                              PatientAge = c.Age,
+                              Gender = c.Gender,
+                              AllergyDetail = c.AllergyDetail,
+                              CaseDetail = c.Casedetail,
                           }).ToList();
 
             Dictionary<string, object> jsonResult = new Dictionary<string, object>();
             jsonResult.Add("Html", RenderRazorViewToString("~/Views/Physician/mvcgridpartial.cshtml", result));
-            jsonResult.Add("Status","Success");
+            jsonResult.Add("Status", "Success");
 
-            return Json(jsonResult,JsonRequestBehavior.AllowGet);
+            return Json(jsonResult, JsonRequestBehavior.AllowGet);
         }
 
         protected string RenderRazorViewToString(string viewName, object model)
@@ -117,25 +115,7 @@ namespace WebApplication1.Controllers
                 return sw.GetStringBuilder().ToString();
             }
         }
-        public List<Doctor> Doctorlist()
-        {
-            OPDManagementEntities context = new OPDManagementEntities();
-            List<Doctor> result = new List<Doctor>();
-            var obj = context.DoctorMasters.Select(u => u).ToList();
-            if (obj != null && obj.Count() > 0)
-            {
-                foreach (var data in obj)
-                {
-                    Doctor model = new Doctor();
-                    model.SerialNo = data.SerialNo;
-                    model.DoctorName = data.DoctorName;
-                    model.DoctorCode = data.DoctorCode;
-                    result.Add(model);
-                }
-            }
-
-            return result;
-        }
+      
 
 
     }

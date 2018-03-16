@@ -151,6 +151,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Common.cs" />
     <Compile Include="Controllers\AppointmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PhysicianController.cs" />
@@ -158,7 +159,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Appointment.cs" />
-    <Compile Include="Models\Physician.cs" />
+    <Compile Include="Models\PatientLogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -212,6 +213,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\911.PNG" />
+    <Content Include="Images\AddIcon.png" />
     <Content Include="Images\icons8-facebook-50.png" />
     <Content Include="Images\icons8-google-plus-50.png" />
     <Content Include="Images\icons8-marker-filled-50.png" />
@@ -268,9 +270,12 @@
     <Content Include="Views\Physician\Index.cshtml" />
     <Content Include="Views\Physician\Details.cshtml" />
     <Content Include="Views\Physician\Treat.cshtml" />
+    <Content Include="Views\Appointment\AppointmentBooked.cshtml" />
+    <Content Include="Views\Appointment\AddCaseDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="UploadFile\" />
     <Folder Include="Views\Shared\EditorTemplates\" />
   </ItemGroup>
   <ItemGroup>

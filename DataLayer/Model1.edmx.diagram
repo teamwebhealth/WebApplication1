@@ -5,10 +5,9 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="ef74e02e13344621baaa273f68922abb" Name="Diagram1">
-        <EntityTypeShape EntityType="OPDManagementModel.DoctorMaster" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="OPDManagementModel.CaseDetail" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="OPDManagementModel.AvaibilityMaster" Width="1.5" PointX="3.375" PointY="3.75" />
-        <EntityTypeShape EntityType="OPDManagementModel.OPDManagement" Width="1.5" PointX="5.125" PointY="0.5" />
+        <EntityTypeShape EntityType="OPDManagementModel.DoctorMaster" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="OPDManagementModel.AvaibilityMaster" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="OPDManagementModel.OPDManagement" Width="1.5" PointX="0.75" PointY="3.125" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

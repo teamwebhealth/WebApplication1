@@ -9,6 +9,7 @@
     padding-right: 30px;
     margin: 80px auto;
     width: 90%;
+    min-height:100%;
 }
 
 
@@ -49,4 +50,26 @@ border:2px solid black;
 }
 .formappoint label {
 width:200px;
+}
+html, body {
+    height: 100%;
+}
+
+.page-wrap {
+    min-height: 100%;
+    /* equal to footer height */
+    margin-bottom: -142px;
+}
+
+    .page-wrap:after {
+        content: "";
+        display: block;
+    }
+
+    .site-footer, .page-wrap:after {
+        height: 142px;
+    }
+
+.site-footer {
+    /*background: orange;*/
 }

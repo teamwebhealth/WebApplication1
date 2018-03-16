@@ -17,17 +17,20 @@ namespace DataLayer
         public int SerialNo { get; set; }
         public string ReferenceNo { get; set; }
         public string FullName { get; set; }
-        public Nullable<decimal> PhoneNo { get; set; }
+        public string PhoneNo { get; set; }
         public string EmailId { get; set; }
+        public Nullable<int> DoctorId { get; set; }
         public string DoctorCode { get; set; }
         public Nullable<System.DateTime> AppointmentDate { get; set; }
+        public Nullable<int> AvaibilityMasterId { get; set; }
         public string AppointmentTime { get; set; }
         public string Age { get; set; }
         public string Gender { get; set; }
         public string AllergyDetail { get; set; }
         public string Casedetail { get; set; }
-        public byte[] PreviousPrescreption { get; set; }
-        public byte[] CaseImage { get; set; }
-        public Nullable<int> Treated { get; set; }
+        public string PreviousPrescreption { get; set; }
+        public string CaseImage { get; set; }
+        public string Treated { get; set; }
+        public string DoctorFeedback { get; set; }
     }
 }

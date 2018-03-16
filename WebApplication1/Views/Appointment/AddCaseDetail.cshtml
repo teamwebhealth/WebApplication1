@@ -4,9 +4,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@using (Html.BeginForm("AddCaseDetail", "Appointment", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Detail</h4>
+        <h4>Add Case Detail</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div>
@@ -40,13 +43,13 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.CaseDetail, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.TextAreaFor(model => model.CaseDetail, new { @class = "form-control", @rows = 10, @cols = 30 , @readonly = "readonly" })
+                        @Html.TextAreaFor(model => model.CaseDetail, new { @class = "form-control", @rows = 10, @cols = 30 })
                         @Html.ValidationMessageFor(model => model.CaseDetail, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        @Html.ActionLink("TakePatient", "Treat", "Physician", new { ReferenceNo = Model.ReferenceNo}, new {@class= "btn btn-default" }) 
+                        <input type="submit" value="Submit" class="btn btn-default" />
                     </div>
                 </div>
             </div>
@@ -54,7 +57,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Age, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control" , @readonly = "readonly" } })
+                        @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -66,14 +69,14 @@
 new SelectListItem{ Text="Male", Value = "Male" },
 new SelectListItem{ Text="Female", Value = "Female" },
 new SelectListItem{ Text="Other", Value = "Other" },
-}, new { @class = "form-control" , @readonly = "readonly" })
+}, new { @class = "form-control" })
                     </div>
                 </div>
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.AllergyDetail, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.TextAreaFor(model => model.AllergyDetail, new { @class = "form-control", @rows = 5, @cols = 20 , @readonly = "readonly" })
+                        @Html.TextAreaFor(model => model.AllergyDetail, new { @class = "form-control", @rows = 5, @cols = 20 })
                         @Html.ValidationMessageFor(model => model.AllergyDetail, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -83,14 +86,26 @@ new SelectListItem{ Text="Other", Value = "Other" },
                         <div class="col-md-12"><a href="@(Model.PeviousPrescriptionPath)" target="_blank">View Deatil of Previous prescription</a></div>
                     </div>
                 }
-                
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PeviousPrescription, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.PeviousPrescription, new { @class = "form-control", type = "file" })
+                        @Html.ValidationMessageFor(model => model.PeviousPrescription, "", new { @class = "text-danger" })
+                    </div>
+                </div>
                 @if (!string.IsNullOrEmpty(Model.CaseImagePath))
                 {
                     <div class="form-group">
                         <div class="col-md-12"><a href="@(Model.CaseImagePath)" target="_blank">View Deatil of Case Image</a></div>
                     </div>
                 }
-               
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CaseImage, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.CaseImage, new { @class = "form-control", type = "file" })
+                        @Html.ValidationMessageFor(model => model.CaseImage, "", new { @class = "text-danger" })
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -102,5 +117,4 @@ new SelectListItem{ Text="Other", Value = "Other" },
 
     </div>
 
-
-
+}

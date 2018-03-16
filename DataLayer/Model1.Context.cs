@@ -26,7 +26,6 @@ namespace DataLayer
         }
     
         public virtual DbSet<DoctorMaster> DoctorMasters { get; set; }
-        public virtual DbSet<CaseDetail> CaseDetails { get; set; }
         public virtual DbSet<AvaibilityMaster> AvaibilityMasters { get; set; }
         public virtual DbSet<OPDManagement> OPDManagements { get; set; }
     }
