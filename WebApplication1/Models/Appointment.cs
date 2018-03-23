@@ -22,6 +22,8 @@ namespace WebApplication1.Models
         //  public string LastName { get; set; }
 
         [DisplayName("ContactNo")]
+        [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Please Enter a valid 10 digit Phone number")]
         [Required(ErrorMessage = "This Field is required.")]
         public String PhoneNo { get; set; }
 
