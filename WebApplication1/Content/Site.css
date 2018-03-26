@@ -34,42 +34,59 @@ textarea {
     height: auto;
     width: 100%;
 }
-.topinfo {
-    background-color: #ccffff;
-    padding:15px 10px;
-}
-.page {
-margin-top:100px;
-}
+
+
+    .topinfo {
+        background-color: #ccffff;
+        padding: 15px 10px;
+    }
+
+    .page {
+        margin-top: 100px;
+    }
+
+    .blackBorder {
+        border: 2px solid black;
+    }
+
+    .appointlogo img {
+        height: auto;
+        width: 40px;
+    }
+
+    .formappoint label {
+        width: 200px;
+    }
+
+    html, body {
+        height: 100%;
+    }
+
+    .page-wrap {
+        min-height: 100%;
+        /* equal to footer height */
+        margin-bottom: -142px;
+    }
+
+        .page-wrap:after {
+            content: "";
+            display: block;
+        }
+
+        .site-footer, .page-wrap:after {
+            height: 142px;
+        }
+
+    .site-footer {
+        /*background: orange;*/
+    }
 .blackBorder {
-border:2px solid black;
-}
-.appointlogo img {
-    height: auto;
-    width: 40px;
-}
-.formappoint label {
-width:200px;
-}
-html, body {
-    height: 100%;
+    min-width:300px;
 }
 
-.page-wrap {
-    min-height: 100%;
-    /* equal to footer height */
-    margin-bottom: -142px;
-}
-
-    .page-wrap:after {
-        content: "";
-        display: block;
+@media (max-width: 999px) {
+    .logo img {
+        height: auto;
+        width: 30%;
     }
-
-    .site-footer, .page-wrap:after {
-        height: 142px;
-    }
-
-.site-footer {
-    /*background: orange;*/
 }

@@ -37,7 +37,7 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="col-md-2">
-                <div class="navbar-header">
+                <div class="navbar-header" style="float:right">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -52,20 +52,22 @@
                 </a>
             </div>
             <div class="col-md-10">
-                <div class="row">
-                    <div class="navbar-collapse topinfo ">
-                        <div class=" col-md-6">
-                            <div class="col-md-2"><img src="~/Images/icons8-marker-filled-50.png" alt="img" /></div>
-                            607 Pastuer Road<br/>
-                            Thunder Bay, ON P7B5Y9
-                        </div>
-                        <div class=" col-md-6">
-                            <div class="col-md-2"><img src="~/Images/icons8-phone-filled-50.png" alt="img" /></div>
-                        +1 (123) - 456 - 7890</div>
-                    </div>
-                </div>
+                
                 <div class="row">
                     <div class="navbar-collapse collapse">
+                        <div class="row">
+                            <div class="navbar-collapse topinfo ">
+                                <div class=" col-md-6">
+                                    <div class="col-md-2"><img src="~/Images/icons8-marker-filled-50.png" alt="img" /></div>
+                                    607 Pastuer Road<br />
+                                    Thunder Bay, ON P7B5Y9
+                                </div>
+                                <div class=" col-md-6">
+                                    <div class="col-md-2"><img src="~/Images/icons8-phone-filled-50.png" alt="img" /></div>
+                                    +1 (123) - 456 - 7890
+                                </div>
+                            </div>
+                        </div>
                         <ul class="nav navbar-nav">
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
                             <li>@Html.ActionLink("My Appointment", "Index", "Appointment")</li>
